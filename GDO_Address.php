@@ -51,7 +51,7 @@ final class GDO_Address extends GDO
 	/**
 	 * @return GDO_Country
 	 */
-	public function getCountry() { return $this->getValue('address_country'); }
+	public function getCountry() { return $this->gdoValue('address_country'); }
 	public function getCountryID() { return $this->gdoVar('address_country'); }
 	public function getZIP() { return $this->gdoVar('address_zip'); }
 	public function getCity() { return $this->gdoVar('address_city'); }
@@ -69,7 +69,7 @@ final class GDO_Address extends GDO
 	/**
 	 * @return GDO_User
 	 */
-	public function getCreator() { return $this->getValue('address_creator'); }
+	public function getCreator() { return $this->gdoValue('address_creator'); }
 	public function getCreatorId() { return $this->gdoVar('address_creator'); }
 	
 	##############
