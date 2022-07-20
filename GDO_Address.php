@@ -14,6 +14,13 @@ use GDO\Realname\GDT_Realname;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
 
+/**
+ * An address object.
+ * 
+ * @author gizmore
+ * @version 7.0.1
+ * @since 6.2.0
+ */
 final class GDO_Address extends GDO
 {
 	###########
@@ -21,7 +28,7 @@ final class GDO_Address extends GDO
 	###########
 	public function gdoColumns() : array
 	{
-		return array(
+		return [
 			GDT_AutoInc::make('address_id'),
 			GDT_Divider::make('div_company_address')->label('div_company_address'),
 			GDT_Realname::make('address_company')->label('company'),
@@ -42,16 +49,13 @@ final class GDO_Address extends GDO
 			# Special
 			GDT_CreatedAt::make('address_created'),
 			GDT_CreatedBy::make('address_creator'),
-		);
+		];
 	}
 	
 	##############
 	### Getter ###
 	##############
-	/**
-	 * @return GDO_Country
-	 */
-	public function getCountry() { return $this->gdoValue('address_country'); }
+	public function getCountry() : ?GDO_Country { return $this->gdoValue('address_country'); }
 	public function getCountryID() { return $this->gdoVar('address_country'); }
 	public function getZIP() { return $this->gdoVar('address_zip'); }
 	public function getCity() { return $this->gdoVar('address_city'); }
@@ -66,11 +70,8 @@ final class GDO_Address extends GDO
 	public function getVAT() { return $this->gdoVar('address_vat'); }
 	public function getCompany() { return $this->gdoVar('address_company'); }
 	
-	/**
-	 * @return GDO_User
-	 */
-	public function getCreator() { return $this->gdoValue('address_creator'); }
-	public function getCreatorId() { return $this->gdoVar('address_creator'); }
+	public function getCreator() : GDO_User { return $this->gdoValue('address_creator'); }
+	public function getCreatorId() : string { return $this->gdoVar('address_creator'); }
 	
 	##############
 	### Helper ###
@@ -92,5 +93,6 @@ final class GDO_Address extends GDO
 	public function renderCell() : string { return GDT_Address::make()->gdo($this)->renderCell(); }
 	public function renderList() : string { return GDT_Template::php('Address', 'listitem/address.php', ['address' => $this]); }
 	public function renderCard() : string { return GDT_Template::php('Address', 'card/address.php', ['address' => $this]); }
-	public function renderChoice() : string { return t('address_choice', [$this->display('address_name'), $this->display('address_street')]); }
+	public function renderChoice() : string { return t('address_choice', [$this->gdoDisplay('address_name'), $this->gdoDisplay('address_street')]); }
+
 }

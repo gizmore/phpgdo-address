@@ -13,10 +13,7 @@ use GDO\Address\Module_Address;
  */
 final class SetPrimary extends Method
 {
-	/**
-	 * @var GDO_Address
-	 */
-	private $address;
+	private GDO_Address $address;
 	
 	public function gdoParameters() : array
 	{
@@ -25,7 +22,7 @@ final class SetPrimary extends Method
 		];
 	}
 	
-	public function onInit()
+	public function onInit() : void
 	{
 		$this->address = $this->gdoParameterValue('id');
 	}

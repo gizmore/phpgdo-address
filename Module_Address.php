@@ -4,6 +4,7 @@ namespace GDO\Address;
 use GDO\Core\GDO_Module;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Divider;
+use GDO\UI\GDT_Link;
 
 /**
  * Module that adds address related functionality.
@@ -12,12 +13,12 @@ use GDO\UI\GDT_Divider;
  * UserSettings: primary user address data
  * 
  * @author gizmore
- * @version 7.0.0
+ * @version 7.0.1
  * @since 6.2.0
  */
 final class Module_Address extends GDO_Module
 {
-	public int $priority = 10;
+	public int $priority = 15;
 
 	public function getClasses() : array
 	{
@@ -69,19 +70,23 @@ final class Module_Address extends GDO_Module
 	
 	public function getUserSettings()
 	{
-		return GDO_Address::table()->gdoColumnsExcept('address_id', 'address_created', 'address_creator');
+		return [
+			GDT_Link::make('link_add_address')->href(href('Address', 'Add')),
+			GDT_Link::make('link_add_address')->href(href('Address', 'Add')),
+		];
+// 		return GDO_Address::table()->gdoColumnsExcept('address_id', 'address_created', 'address_creator');
 	}
 	
 	public function getUserConfig()
 	{
 		return [
-			GDT_Address::make('user_address'),
+			GDT_Address::make('address'),
 		];
 	}
 	
 	public function cfgUserAddress(GDO_User $user)
 	{
-		if ($address = $this->userSettingValue($user, 'user_address'))
+		if ($address = $this->userSettingValue($user, 'address'))
 		{
 			return $address;
 		}
@@ -114,7 +119,7 @@ final class Module_Address extends GDO_Module
 		    'address_city' => $this->userSettingVar($user, 'address_city'),
 		    'address_street' => $this->userSettingVar($user, 'address_street'),
 	    ])->insert();
-		$this->saveUserSetting($user, 'user_address', $address->getID());
+		$this->saveUserSetting($user, 'address', $address->getID());
 	}
 
 }
