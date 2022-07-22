@@ -4,7 +4,6 @@ namespace GDO\Address\Method;
 use GDO\Core\Method;
 use GDO\Address\GDT_Address;
 use GDO\Address\GDO_Address;
-use GDO\Core\Website;
 use GDO\Address\Module_Address;
 
 /**
@@ -30,7 +29,7 @@ final class SetPrimary extends Method
 	public function execute()
 	{
 	    Module_Address::instance()->saveSetting('user_address', $this->address->getID());
-		return Website::redirectMessage('msg_address_set_primary', null, Website::hrefBack());
+		return $this->redirectMessage('msg_address_set_primary', null)->hrefBack();
 	}
 	
 }
