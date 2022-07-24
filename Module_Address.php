@@ -71,8 +71,8 @@ final class Module_Address extends GDO_Module
 	public function getUserSettings()
 	{
 		return [
-			GDT_Link::make('link_add_address')->href(href('Address', 'Add')),
-			GDT_Link::make('link_add_address')->href(href('Address', 'Add')),
+			GDT_Link::make('link_add_address')->href(href('Address', 'Add'))->noacl(),
+			GDT_Link::make('link_own_addresses')->href(href('Address', 'OwnAddresses'))->noacl(),
 		];
 // 		return GDO_Address::table()->gdoColumnsExcept('address_id', 'address_created', 'address_creator');
 	}

@@ -21,15 +21,15 @@ final class SetPrimary extends Method
 		];
 	}
 	
-	public function onInit() : void
+	public function onInit()
 	{
 		$this->address = $this->gdoParameterValue('id');
 	}
 	
 	public function execute()
 	{
-	    Module_Address::instance()->saveSetting('user_address', $this->address->getID());
-		return $this->redirectMessage('msg_address_set_primary', null)->hrefBack();
+	    Module_Address::instance()->saveSetting('address', $this->address->getID());
+		return $this->redirectMessage('msg_address_set_primary', null)->back();
 	}
 	
 }

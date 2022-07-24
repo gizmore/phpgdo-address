@@ -3,6 +3,7 @@ namespace GDO\Address\Method;
 
 use GDO\Table\MethodQueryTable;
 use GDO\Address\GDO_Address;
+use GDO\Core\GDO;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Button;
 
@@ -15,7 +16,7 @@ final class OwnAddresses extends MethodQueryTable
 {
 	public function isUserRequired() : bool { return true; }
 	
-	public function gdoTable()
+	public function gdoTable() : GDO
 	{
 	    return GDO_Address::table();
 	}

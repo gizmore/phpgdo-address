@@ -22,19 +22,19 @@ return [
 	'btn_set_primary_address' => 'Wählen',
 		
 	# Add
-	'ft_address_addaddress' => 'Adresse hinzufügen',
+	'mt_address_addaddress' => 'Adresse hinzufügen',
 	'div_company_address' => 'Firmendaten',
 	'div_person_address' => 'Personendaten',
 	'div_contact_address' => 'Kontaktdaten',
 	'address_choice' => '%s - %s',
-	'mdescr_address_addaddress' => 'Adresse hinzufügen',	
+	'md_address_addaddress' => 'Adresse hinzufügen',	
 	
 	# Primary
 	'msg_address_set_primary' => 'Ihre Hauptadresse wurde gesetzt.',
 	'address_choice' => '%s - %s',
 	    
 	#Meta
-	'mdescr_address_addresslist' => 'Durchsuchen Sie Ihre eingetragenen Adressen.',
-	'mdescr_address_addresslist' => 'Search through the adress table.',
-	'mdescr_address_ownaddresses' => 'Show all your entered adresses.',
+	'md_address_addresslist' => 'Durchsuchen Sie Ihre eingetragenen Adressen.',
+	'md_address_addresslist' => 'Search through the adress table.',
+	'md_address_ownaddresses' => 'Show all your entered adresses.',
 ];

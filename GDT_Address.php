@@ -11,9 +11,10 @@ use GDO\User\GDO_User;
  * A GDT_Object for GDO_Address.
  * Filter is searching street and country as well.
  * Can restrict to own addresses.
+ * 
  * @author gizmore
  * @see GDO_Address
- * @version 6.10.6
+ * @version 7.0.1
  * @since 6.02
  */
 final class GDT_Address extends GDT_ObjectSelect
@@ -37,7 +38,7 @@ final class GDT_Address extends GDT_ObjectSelect
 			# autoselect primary address
 			if (module_enabled('Address'))
 			{
-				$this->var(Module_Address::instance()->settingVar('user_address'));
+				$this->var(Module_Address::instance()->settingVar('address'));
 			}
 			# query all own addresses
 			return $this->table->allWhere("address_creator=$uid");
@@ -76,7 +77,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	{
 		$tVars = [
 			'gdt' => $this,
-			'address' => $this->gdo,
+			'address' => isset($this->gdo) ? $this->gdo : null,
 		];
 		return GDT_Template::php('Address', 'cell/address.php', $tVars);
 	}
@@ -85,7 +86,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	{
 		$tVars = [
 			'field' => $this,
-			'address' => $this->gdo,
+			'address' => isset($this->gdo) ? $this->gdo : null,
 		];
 		return GDT_Template::php('Address', 'card/address_pdf.php', $tVars);
 	}
