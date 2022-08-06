@@ -2,13 +2,10 @@
 use GDO\Address\GDO_Address;
 use GDO\Address\GDT_Address;
 use GDO\Country\GDO_Country;
-
 /**
- * @var GDT_Address $gdt;
+ * @var GDT_Address $gdt
+ * @var GDO_Address $address
  */
-$gdt instanceof GDT_Address;
-$gdo = $gdt->gdo;
-$address = GDO_Address::blank($gdo->getGDOVars());
 $country = GDO_Country::getByISOOrUnknown($address->getCountryID());
 ?>
 <?php if (!$address->emptyAddress()) : ?>

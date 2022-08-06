@@ -82,6 +82,15 @@ final class GDT_Address extends GDT_ObjectSelect
 		return GDT_Template::php('Address', 'cell/address.php', $tVars);
 	}
 	
+	public function renderCard() : string
+	{
+		if (isset($this->gdo))
+		{
+			return $this->renderCell();
+		}
+		return $this->displayCard(t('---n/a---'));
+	}
+	
 	public function renderPDF() : string
 	{
 		$tVars = [
@@ -127,7 +136,6 @@ final class GDT_Address extends GDT_ObjectSelect
 	################
 	### Validate ###
 	################
-	
 	public function validate($value) : bool
 	{
 	    # not null etc
