@@ -4,6 +4,7 @@ namespace GDO\Address\Method;
 use GDO\Table\MethodQueryTable;
 use GDO\Address\GDO_Address;
 use GDO\Core\GDO;
+use GDO\DB\Query;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Button;
 
@@ -21,7 +22,7 @@ final class OwnAddresses extends MethodQueryTable
 	    return GDO_Address::table();
 	}
 	
-	public function getQuery()
+	public function getQuery() : Query
 	{
 		$uid = GDO_User::current()->getID();
 		return GDO_Address::table()->select()->where("address_creator={$uid}");
