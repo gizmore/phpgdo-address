@@ -11,7 +11,8 @@ use GDO\UI\GDT_Button;
 /**
  * Overview of own addresses.
  * @author gizmore
- * @version 6.10
+ * @version 7.0.1
+ * @since 6.9.0
  */
 final class OwnAddresses extends MethodQueryTable
 {
@@ -33,6 +34,7 @@ final class OwnAddresses extends MethodQueryTable
 		$a = GDO_Address::table();
 		return [
 			GDT_Button::make('btn_set_primary_address'),
+			$a->gdoColumn('address_id'),
 			$a->gdoColumn('address_company'),
 			$a->gdoColumn('address_name'),
 			$a->gdoColumn('address_street'),
