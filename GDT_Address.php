@@ -73,7 +73,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	### Render ###
 	##############
-	public function renderCell() : string
+	public function renderHTML() : string
 	{
 		$tVars = [
 			'gdt' => $this,
@@ -86,7 +86,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	{
 		if (isset($this->gdo))
 		{
-			return $this->renderCell();
+			return $this->renderHTML();
 		}
 		return $this->displayCard(t('---n/a---'));
 	}
