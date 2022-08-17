@@ -10,7 +10,6 @@ use GDO\Core\GDT_CreatedBy;
 use GDO\Core\GDT_Template;
 use GDO\Core\GDT_String;
 use GDO\Mail\GDT_Email;
-use GDO\Realname\GDT_Realname;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
 

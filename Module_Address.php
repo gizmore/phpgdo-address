@@ -27,6 +27,11 @@ final class Module_Address extends GDO_Module
 		];
 	}
 	
+	public function getDependencies() : array
+	{
+		return ['Mail'];
+	}
+	
 	public function onLoadLanguage() : void { $this->loadLanguage('lang/address'); }
 	
 	public function getConfig() : array
