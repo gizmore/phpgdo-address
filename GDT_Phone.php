@@ -22,7 +22,7 @@ final class GDT_Phone extends GDT_String
 	    parent::__construct();
 		$this->min = 7;
 		$this->max = 20;
-		$this->pattern = "#^\\+?[-/0-9 ]+$#Ds";
+		$this->pattern = "/^\\+?[-\\/0-9 ]+$/D";
 		$this->encoding = self::ASCII;
 		$this->caseS();
 		$this->icon('phone');
