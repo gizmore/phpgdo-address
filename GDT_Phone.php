@@ -10,7 +10,7 @@ use GDO\Core\GDT_String;
  * @TODO write a phone-validator module that uses gdo6-sms to validate a phone.
  * 
  * @author gizmore
- * @version 6.10.4
+ * @version 7.0.1
  * @since 6.8.0
  */
 final class GDT_Phone extends GDT_String
@@ -20,17 +20,19 @@ final class GDT_Phone extends GDT_String
 	protected function __construct()
 	{
 	    parent::__construct();
-		$this->min = 7;
-		$this->max = 20;
-		$this->pattern = "/^\\+?[-\\/0-9 ]+$/D";
+		$this->min = 6;
+		$this->max = 32;
+		$this->pattern = "/^\+?[-\/0-9 ]+$/D";
 		$this->encoding = self::ASCII;
 		$this->caseS();
 		$this->icon('phone');
 	}
 	
-	public function plugVar() : string
+	public function plugVars() : array
 	{
-	    return '+49 176 / 59 59 88 44';
+		return [
+			[$this->getName() => '+49 176 / 59 59 88 44'],
+		];
 	}
 	
 }

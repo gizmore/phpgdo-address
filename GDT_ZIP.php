@@ -19,9 +19,11 @@ final class GDT_ZIP extends GDT_String
         $this->ascii()->caseS()->max(10);
     }
     
-    public function plugVar() : string
+    public function plugVars() : array
     {
-        return '31224';
+        return [
+        	[$this->getName() => '31224'],
+        ];
     }
 
 }

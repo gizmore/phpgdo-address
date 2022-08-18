@@ -16,9 +16,11 @@ final class GDT_VAT extends GDT_String
     public int $encoding = self::ASCII;
     public bool $caseSensitive = false;
 
-    public function plugVar() : string
+    public function plugVars() : array
     {
-        return '38/107/05324';
+    	return [
+    		[$this->getName() => '38/107/05324'],
+    	];
     }
 
 }
