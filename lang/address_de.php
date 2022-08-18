@@ -40,6 +40,7 @@ return [
 	'md_address_ownaddresses' => 'Show all your entered addresses.',
 	
 	# Own
-	'list_address_ownaddresses' => 'You have %s addresses',
+	'mt_address_ownaddresses' => 'Ihre Adressen',
+	'list_address_ownaddresses' => 'Sie haben %s Adressen',
 
 ];

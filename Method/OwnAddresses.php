@@ -18,6 +18,11 @@ final class OwnAddresses extends MethodQueryTable
 {
 	public function isUserRequired() : bool { return true; }
 	
+	public function getMethodTitle() : string
+	{
+		return t('list_address_ownaddresses', [$this->getCountQuery()->exec()->fetchValue()]);
+	}
+	
 	public function gdoTable() : GDO
 	{
 	    return GDO_Address::table();

@@ -39,6 +39,7 @@ return [
 	'md_address_ownaddresses' => 'Show all your entered addresses.',
 	
 	# Own
+	'mt_address_ownaddresses' => 'Address List',
 	'list_address_ownaddresses' => 'You have %s addresses',
 
 	
