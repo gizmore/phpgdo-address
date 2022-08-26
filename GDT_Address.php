@@ -6,6 +6,7 @@ use GDO\DB\Query;
 use GDO\Core\GDO;
 use GDO\Core\GDT_ObjectSelect;
 use GDO\User\GDO_User;
+use GDO\Table\GDT_Filter;
 
 /**
  * A GDT_Object for GDO_Address.
@@ -103,7 +104,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	### Filter ###
 	##############
-	public function filterQuery(Query $query, $rq=null) : self
+	public function filterQuery(Query $query, GDT_Filter $f) : self
 	{
 		if ($filter = $this->filterVar($rq))
 		{
