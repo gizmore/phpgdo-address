@@ -76,11 +76,15 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	public function renderHTML() : string
 	{
+		if (!isset($this->gdo))
+		{
+			return t('---n/a---');
+		}
 		$tVars = [
 			'gdt' => $this,
-			'address' => isset($this->gdo) ? $this->gdo : null,
+			'address' => $this->gdo,
 		];
-		return GDT_Template::php('Address', 'cell/address.php', $tVars);
+		return GDT_Template::php('Address', 'address_html.php', $tVars);
 	}
 	
 	public function renderCard() : string

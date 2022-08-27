@@ -1,10 +1,9 @@
 <?php
-use GDO\Address\GDO_Address;
-use GDO\Address\GDT_Address;
+namespace GDO\Address\tpl;
 use GDO\Country\GDO_Country;
 /**
- * @var GDT_Address $gdt
- * @var GDO_Address $address
+ * @var \GDO\Address\GDT_Address $gdt
+ * @var \GDO\Address\GDO_Address $address
  */
 $country = GDO_Country::getByISOOrUnknown($address->getCountryID());
 ?>
