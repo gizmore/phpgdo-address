@@ -27,7 +27,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	{
 	    parent::__construct();
 		$this->table(GDO_Address::table());
-		$this->orderField = 'address_street';
+// 		$this->orderField = 'address_street';
 	}
 	
 	public function getChoices()
@@ -110,7 +110,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	public function filterQuery(Query $query, GDT_Filter $f) : self
 	{
-		if ($filter = $this->filterVar($rq))
+		if ($filter = $this->filterVar($f))
 		{
 			$filter = GDO::escapeSearchS($filter);
 			$this->filterQueryCondition($query, "address_zip LIKE '%$filter%' OR address_city LIKE '%$filter%' OR address_street LIKE '%$filter%'");

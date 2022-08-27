@@ -72,6 +72,12 @@ final class GDO_Address extends GDO
 	public function getCreator() : GDO_User { return $this->gdoValue('address_creator'); }
 	public function getCreatorId() : string { return $this->gdoVar('address_creator'); }
 	
+	public function getAddressLine() : string
+	{
+		$line = $this->getStreet() . ', ' . $this->getZIP() . ' ' .  $this->getCity();
+		return trim($line, ' ,');
+	}
+	
 	##############
 	### Helper ###
 	##############
