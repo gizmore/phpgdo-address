@@ -30,6 +30,7 @@ return [
 	'msg_address_created_and_selected' => 'This address has been added and been selected as your primary address.',
 	    
 	# Primary
+	'mt_address_setprimary' => 'Set address',
 	'msg_address_set_primary' => 'Your primary address has been set.',
 	'address_choice' => '%s - %s',
 	    

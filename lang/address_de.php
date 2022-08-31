@@ -31,6 +31,7 @@ return [
 	'msg_address_created_and_selected' => 'Ihre Adresse wurde hinzugefügt und ausgewählt.',
 	
 	# Primary
+	'mt_address_setprimary' => 'Adresse setzen',
 	'msg_address_set_primary' => 'Ihre Hauptadresse wurde gesetzt.',
 	'address_choice' => '%s - %s',
 	    
