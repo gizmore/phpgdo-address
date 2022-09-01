@@ -110,11 +110,12 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	public function filterQuery(Query $query, GDT_Filter $f) : self
 	{
-		if ($filter = $this->filterVar($f))
+		if (null !== ($filter = $this->filterVar($f)))
 		{
 			$filter = GDO::escapeSearchS($filter);
 			$this->filterQueryCondition($query, "address_zip LIKE '%$filter%' OR address_city LIKE '%$filter%' OR address_street LIKE '%$filter%'");
 		}
+		return $this;
 	}
 	
 	public function filterGDO(GDO $gdo, $filtervalue) : bool
