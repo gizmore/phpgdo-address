@@ -76,20 +76,21 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	public function renderHTML() : string
 	{
-		if (!isset($this->gdo))
+		$address = $this->getAddress();
+		if (!$address)
 		{
 			return t('---n/a---');
 		}
 		$tVars = [
 			'gdt' => $this,
-			'address' => $this->gdo,
+			'address' => $address,
 		];
 		return GDT_Template::php('Address', 'address_html.php', $tVars);
 	}
 	
 	public function renderCard() : string
 	{
-		if (isset($this->gdo))
+		if ($this->getAddress())
 		{
 			return $this->renderHTML();
 		}
@@ -100,9 +101,9 @@ final class GDT_Address extends GDT_ObjectSelect
 	{
 		$tVars = [
 			'field' => $this,
-			'address' => isset($this->gdo) ? $this->gdo : null,
+			'address' => $this->getAddress(),
 		];
-		return GDT_Template::php('Address', 'card/address_pdf.php', $tVars);
+		return GDT_Template::php('Address', 'address_pdf.php', $tVars);
 	}
 
 	##############
@@ -161,7 +162,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	    {
 	        if ($value->getCreator()->getID() != GDO_User::current()->getID())
 	        {
-	            return $this->error('err_no_permission');
+	            return $this->error('err_permission_required');
 	        }
 	    }
 	    
