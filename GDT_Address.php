@@ -7,6 +7,7 @@ use GDO\Core\GDO;
 use GDO\Core\GDT_ObjectSelect;
 use GDO\User\GDO_User;
 use GDO\Table\GDT_Filter;
+use GDO\Core\WithGDO;
 
 /**
  * A GDT_Object for GDO_Address.
@@ -20,6 +21,13 @@ use GDO\Table\GDT_Filter;
  */
 final class GDT_Address extends GDT_ObjectSelect
 {
+// 	use WithGDO;
+
+	public function defaultLabel() : self
+	{
+		return $this->label('address');
+	}
+	
     ###########
     ### GDT ###
     ###########
@@ -86,6 +94,11 @@ final class GDT_Address extends GDT_ObjectSelect
 			'address' => $address,
 		];
 		return GDT_Template::php('Address', 'address_html.php', $tVars);
+	}
+	
+	public function renderList() : string
+	{
+		return 'XXXXXXXXXXX';
 	}
 	
 	public function renderCard() : string

@@ -8,6 +8,7 @@ use GDO\Country\GDO_Country;
 $country = GDO_Country::getByISOOrUnknown($address->getCountryID());
 ?>
 <?php if (!$address->emptyAddress()) : ?>
+<?php echo $address->getNameOrCompany(); ?>,
 <?php echo $address->getStreet(); ?>,
 <?php echo html($address->getCity()); ?>,
 <?php echo $country->renderFlag(); ?>

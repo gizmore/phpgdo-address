@@ -77,6 +77,20 @@ final class GDO_Address extends GDO
 		$line = $this->getStreet() . ', ' . $this->getZIP() . ' ' .  $this->getCity();
 		return trim($line, ' ,');
 	}
+
+	public function getNameOrCompany() : string
+	{
+		$back = '';
+		if ($name = $this->getRealName())
+		{
+			$back .= $name.', ';
+		}
+		if ($cmpy = $this->getCompany())
+		{
+			$back .= $cmpy;
+		}
+		return $back;
+	}
 	
 	##############
 	### Helper ###
@@ -95,7 +109,7 @@ final class GDO_Address extends GDO
 	##############
 	### Render ###
 	##############
-	public function renderHTML() : string { return GDT_Address::make()->gdo($this)->renderHTML(); }
+	public function renderHTML() : string { return GDT_Address::make()->value($this)->renderHTML(); }
 	public function renderList() : string { return GDT_Template::php('Address', 'listitem/address.php', ['address' => $this]); }
 	public function renderCard() : string { return GDT_Template::php('Address', 'card/address.php', ['address' => $this]); }
 	public function renderOption() : string { return t('address_choice', [$this->gdoDisplay('address_name'), $this->gdoDisplay('address_street')]); }
