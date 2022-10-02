@@ -54,7 +54,7 @@ final class GDT_Address extends GDT_ObjectSelect
 		return $this->table->all();
 	}
 	
-	public function getAddress() : GDO_Address
+	public function getAddress() : ?GDO_Address
 	{
 		return $this->getValue();
 	}
