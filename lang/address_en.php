@@ -19,6 +19,7 @@ return [
 	'div_owner_address' => 'Owner address',
 	'link_add_address' => 'Add Address',
 	'link_own_addresses' => 'Your Addresses',
+	'sel_create_address_first' => 'No Address Available',
 	'btn_set_primary_address' => 'Primary',
 		
 	# Add

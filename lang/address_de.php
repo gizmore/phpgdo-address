@@ -19,6 +19,7 @@ return [
 	'div_owner_address' => 'Adresse des Eigentümers',
 	'link_add_address' => 'Adresse hinzufügen',
 	'link_own_addresses' => 'Ihre Adressen',
+	'sel_create_address_first' => 'Keine Adresse vorhanden',
 	'btn_set_primary_address' => 'Wählen',
 		
 	# Add

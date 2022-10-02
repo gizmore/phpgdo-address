@@ -7,7 +7,6 @@ use GDO\Core\GDO;
 use GDO\Core\GDT_ObjectSelect;
 use GDO\User\GDO_User;
 use GDO\Table\GDT_Filter;
-use GDO\Core\WithGDO;
 
 /**
  * A GDT_Object for GDO_Address.
@@ -21,7 +20,6 @@ use GDO\Core\WithGDO;
  */
 final class GDT_Address extends GDT_ObjectSelect
 {
-// 	use WithGDO;
 
 	public function defaultLabel() : self
 	{
@@ -34,6 +32,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	protected function __construct()
 	{
 	    parent::__construct();
+	    $this->icon('address');
 		$this->table(GDO_Address::table());
 // 		$this->orderField = 'address_street';
 	}
@@ -45,20 +44,17 @@ final class GDT_Address extends GDT_ObjectSelect
 		    # current uid
 			$uid = GDO_User::current()->getID();
 			# autoselect primary address
-			if (module_enabled('Address'))
-			{
-				$this->var(Module_Address::instance()->settingVar('address'));
-			}
+// 			if (module_enabled('Address'))
+// 			{
+// 				$this->var(Module_Address::instance()->settingVar('address'));
+// 			}
 			# query all own addresses
 			return $this->table->allWhere("address_creator=$uid");
 		}
 		return $this->table->all();
 	}
 	
-	/**
-	 * @return GDO_Address
-	 */
-	public function getAddress()
+	public function getAddress() : GDO_Address
 	{
 		return $this->getValue();
 	}
@@ -96,10 +92,10 @@ final class GDT_Address extends GDT_ObjectSelect
 		return GDT_Template::php('Address', 'address_html.php', $tVars);
 	}
 	
-	public function renderList() : string
-	{
-		return 'XXXXXXXXXXX';
-	}
+// 	public function renderList() : string
+// 	{
+// 		return 'XXXXXXXXXXX';
+// 	}
 	
 	public function renderCard() : string
 	{

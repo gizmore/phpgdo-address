@@ -85,7 +85,7 @@ final class Module_Address extends GDO_Module
 	public function getUserConfig()
 	{
 		return [
-			GDT_Address::make('address'),
+			GDT_Address::make('address')->label('address')->onlyOwn()->emptyLabel('sel_create_address_first'),
 		];
 	}
 	
