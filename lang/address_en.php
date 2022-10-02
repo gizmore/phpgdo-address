@@ -2,6 +2,7 @@
 namespace GDO\Address\lang;
 return [
 	'gdo_address' => 'Address',
+	'create_an_address' => 'create an address',
 	'list_address_list' => 'Addresses',
 	'address' => 'Address',
 	'phone' => 'Phone',
