@@ -7,6 +7,7 @@ use GDO\Core\GDO;
 use GDO\Core\GDT_ObjectSelect;
 use GDO\User\GDO_User;
 use GDO\Table\GDT_Filter;
+use GDO\Core\GDT;
 
 /**
  * A GDT_Object for GDO_Address.
@@ -179,4 +180,24 @@ final class GDT_Address extends GDT_ObjectSelect
 	    return true;
 	}
 	
+	public function plugVars() : array
+	{
+		if (isset($this->table))
+		{
+			$query = $this->table->select()->first();
+			if ($this->onlyOwn)
+			{
+				$query->where('address_creator='.GDO_User::current()->getID());
+			}
+			$first = $query->exec()->fetchObject();
+			if ($first)
+			{
+				return [
+					[$this->name => $first->getID()],
+				];
+			}
+		}
+		return GDT::EMPTY_ARRAY;
+	}
+
 }

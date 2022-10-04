@@ -23,16 +23,22 @@ final class Module_Address extends GDO_Module
 	public function getClasses() : array
 	{
 		return [
-			GDO_Address::class
+			GDO_Address::class,
 		];
 	}
 	
 	public function getDependencies() : array
 	{
-		return ['Mail', 'Country'];
+		return [
+			'Mail',
+			'Country',
+		];
 	}
 	
-	public function onLoadLanguage() : void { $this->loadLanguage('lang/address'); }
+	public function onLoadLanguage() : void
+	{
+		$this->loadLanguage('lang/address');
+	}
 	
 	public function getConfig() : array
 	{
@@ -79,7 +85,6 @@ final class Module_Address extends GDO_Module
 			GDT_Link::make('link_add_address')->href(href('Address', 'Add'))->noacl(),
 			GDT_Link::make('link_own_addresses')->href(href('Address', 'OwnAddresses'))->noacl(),
 		];
-// 		return GDO_Address::table()->gdoColumnsExcept('address_id', 'address_created', 'address_creator');
 	}
 	
 	public function getUserConfig()
