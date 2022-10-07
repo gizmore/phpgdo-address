@@ -45,4 +45,7 @@ return [
 	'mt_address_ownaddresses' => 'Ihre Adressen',
 	'list_address_ownaddresses' => 'Sie haben %s Adressen',
 
+	# Conf
+	'cfg_div_owner_address' => 'Betreiberadresse',
+	
 ];

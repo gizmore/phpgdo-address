@@ -45,5 +45,8 @@ return [
 	'mt_address_ownaddresses' => 'Address List',
 	'list_address_ownaddresses' => 'You have %s addresses',
 
+	# Conf
+	'cfg_div_owner_address' => 'Host-Address',
+	
 	
 ];
