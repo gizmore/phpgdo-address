@@ -12,6 +12,7 @@ use GDO\Core\GDT_String;
 use GDO\Mail\GDT_Email;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
+use GDO\Date\GDT_Date;
 
 /**
  * An address object.
@@ -31,6 +32,7 @@ final class GDO_Address extends GDO
 			GDT_AutoInc::make('address_id'),
 			GDT_Divider::make('div_company_address')->label('div_company_address'),
 			GDT_Realname::make('address_company')->label('company'),
+			GDT_Date::make('address_est')->label('established'),
 			GDT_VAT::make('address_vat'),
 			# Required
 			GDT_Divider::make('div_person_address')->label('div_person_address'),
@@ -109,6 +111,7 @@ final class GDO_Address extends GDO
 	##############
 	### Render ###
 	##############
+	public function renderName() : string { return $this->getNameOrCompany(); }
 	public function renderHTML() : string { return GDT_Address::make()->value($this)->renderHTML(); }
 	public function renderList() : string { return GDT_Template::php('Address', 'listitem/address.php', ['address' => $this]); }
 	public function renderCard() : string { return GDT_Template::php('Address', 'card/address.php', ['address' => $this]); }
