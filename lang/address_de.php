@@ -14,6 +14,7 @@ return [
 	'address_name' => 'Vor- und Zuname',
 	'fax' => 'Fax',
 	'mobilephone' => 'Handy',
+	'established' => 'Gegründet',
 	
 	'user_address' => 'Adressen-Objekt',
 	'div_owner_address' => 'Adresse des Eigentümers',

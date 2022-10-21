@@ -7,6 +7,7 @@ use GDO\Core\GDO;
 use GDO\DB\Query;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Button;
+use GDO\UI\GDT_EditButton;
 
 /**
  * Overview of own addresses.
@@ -38,6 +39,7 @@ final class OwnAddresses extends MethodQueryTable
 	{
 		$a = GDO_Address::table();
 		return [
+			GDT_EditButton::make(),
 			GDT_Button::make('btn_set_primary_address'),
 			$a->gdoColumn('address_id'),
 			$a->gdoColumn('address_company'),

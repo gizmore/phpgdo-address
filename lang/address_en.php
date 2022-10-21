@@ -15,6 +15,7 @@ return [
 	'address_name' => 'Given- and Lastname',
 	'fax' => 'Fax',
 	'mobilephone' => 'Mobile',
+	'established' => 'Established',
 		
 	'user_address' => 'Address Object',
 	'div_owner_address' => 'Owner address',
