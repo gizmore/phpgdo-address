@@ -6,9 +6,9 @@ use GDO\Form\MethodForm;
 use GDO\Address\GDO_Address;
 use GDO\Form\GDT_Submit;
 use GDO\Form\GDT_AntiCSRF;
-use GDO\Util\Common;
 use GDO\Address\Module_Address;
 use GDO\UI\GDT_Redirect;
+use GDO\Net\GDT_Url;
 
 /**
  * Add an address to your account.
@@ -19,6 +19,13 @@ use GDO\UI\GDT_Redirect;
  */
 final class Add extends MethodForm
 {
+	public function gdoParameters(): array
+	{
+		return [
+			GDT_Url::make('_rb')->notNull()->allowInternal(),
+		];
+	}
+	
 	public function createForm(GDT_Form $form) : void
 	{
 		$fields = GDO_Address::table()->gdoColumnsExcept('address_id', 'address_creator', 'address_created');
@@ -29,10 +36,11 @@ final class Add extends MethodForm
 	
 	public function formValidated(GDT_Form $form)
 	{
+		$back = $this->gdoParameterVar('_rb');
 		$address = GDO_Address::blank($form->getFormVars())->insert();
 		Module_Address::instance()->saveSetting('address', $address->getID());
 		return GDT_Redirect::make()->redirectMessage('msg_address_created_and_selected')->
-			href(Common::getRequestString('rb', href('Account', 'AllSettings')));
+			href($back);
 	}
 
 }
