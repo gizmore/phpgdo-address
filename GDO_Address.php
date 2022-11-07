@@ -23,6 +23,11 @@ use GDO\Date\GDT_Date;
  */
 final class GDO_Address extends GDO
 {
+	public function isTestable(): bool
+	{
+		return false;
+	}
+	
 	###########
 	### GDO ###
 	###########

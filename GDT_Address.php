@@ -44,13 +44,17 @@ final class GDT_Address extends GDT_ObjectSelect
 		{
 		    # current uid
 			$uid = GDO_User::current()->getID();
+			
+// 			if ($uid > 1)
+			{
+				return $this->table->allWhere("address_creator=$uid");
+			}
 			# autoselect primary address
 // 			if (module_enabled('Address'))
 // 			{
 // 				$this->var(Module_Address::instance()->settingVar('address'));
 // 			}
 			# query all own addresses
-			return $this->table->allWhere("address_creator=$uid");
 		}
 		return $this->table->all();
 	}
@@ -170,10 +174,14 @@ final class GDT_Address extends GDT_ObjectSelect
 	    # Check if only own rule applies
 	    if ($this->onlyOwn)
 	    {
-	        if ($value->getCreator()->getID() != GDO_User::current()->getID())
-	        {
-	            return $this->error('err_permission_required');
-	        }
+	    	$uid = GDO_User::current()->getID();
+	    	if ($uid > 1)
+	    	{
+		        if ($value->getCreator()->getID() != $uid)
+		        {
+		            return $this->error('err_permission_required');
+		        }
+	    	}
 	    }
 	    
 	    # passed
