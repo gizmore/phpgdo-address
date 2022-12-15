@@ -47,7 +47,7 @@ final class Module_Address extends GDO_Module
 			],
 			GDO_Address::table()->gdoColumnsExcept(
 				'address_id', 'address_created', 'address_creator',
-				'address_country',
+// 				'address_country',
 				'div_company_address', 'div_person_address', 'div_contact_address'
 			)
 		);

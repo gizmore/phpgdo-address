@@ -104,11 +104,14 @@ final class GDT_Address extends GDT_ObjectSelect
 	
 	public function renderCard() : string
 	{
-		if ($this->getAddress())
-		{
-			return $this->renderHTML();
-		}
-		return $this->displayCard(t('---n/a---'));
+		return $this->displayCard($this->renderHTML());
+// 		$html = '<label>sdgsdg';
+// 		return $html;
+// 		if ($this->getAddress())
+// 		{
+// 			return ;
+// 		}
+// 		return $this->displayCard(t('---n/a---'));
 	}
 	
 	public function renderPDF() : string
