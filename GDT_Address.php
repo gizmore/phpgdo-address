@@ -38,7 +38,7 @@ final class GDT_Address extends GDT_ObjectSelect
 // 		$this->orderField = 'address_street';
 	}
 	
-	public function getChoices()
+	public function getChoices(): array
 	{
 		if ($this->onlyOwn)
 		{
