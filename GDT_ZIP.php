@@ -11,7 +11,7 @@ use GDO\Core\GDT_String;
  */
 final class GDT_ZIP extends GDT_String
 {
-    public function defaultLabel() : self { return $this->label('zip'); }
+    public function defaultLabel(): static { return $this->label('zip'); }
     
     protected function __construct()
     {

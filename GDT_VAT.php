@@ -10,7 +10,7 @@ use GDO\Core\GDT_String;
  */
 final class GDT_VAT extends GDT_String
 {
-    public function defaultLabel() : self { return $this->label('vat'); }
+    public function defaultLabel(): static { return $this->label('vat'); }
 
     public int $max = 32;
     public int $encoding = self::ASCII;

@@ -22,7 +22,7 @@ use GDO\Core\GDT;
 final class GDT_Address extends GDT_ObjectSelect
 {
 
-	public function defaultLabel() : self
+	public function defaultLabel(): static
 	{
 		return $this->label('address');
 	}
@@ -126,7 +126,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	### Filter ###
 	##############
-	public function filterQuery(Query $query, GDT_Filter $f) : self
+	public function filterQuery(Query $query, GDT_Filter $f): static
 	{
 		if (null !== ($filter = $this->filterVar($f)))
 		{
