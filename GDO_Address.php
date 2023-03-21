@@ -1,37 +1,38 @@
 <?php
 namespace GDO\Address;
 
-use GDO\Country\GDO_Country;
-use GDO\Country\GDT_Country;
 use GDO\Core\GDO;
 use GDO\Core\GDT_AutoInc;
 use GDO\Core\GDT_CreatedAt;
 use GDO\Core\GDT_CreatedBy;
-use GDO\Core\GDT_Template;
 use GDO\Core\GDT_String;
+use GDO\Core\GDT_Template;
+use GDO\Country\GDO_Country;
+use GDO\Country\GDT_Country;
+use GDO\Date\GDT_Date;
 use GDO\Mail\GDT_Email;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
-use GDO\Date\GDT_Date;
 
 /**
  * An address object.
- * 
- * @author gizmore
+ *
  * @version 7.0.1
  * @since 6.2.0
+ * @author gizmore
  */
 final class GDO_Address extends GDO
 {
+
 	public function isTestable(): bool
 	{
 		return false;
 	}
-	
+
 	###########
 	### GDO ###
 	###########
-	public function gdoColumns() : array
+	public function gdoColumns(): array
 	{
 		return [
 			GDT_AutoInc::make('address_id'),
@@ -57,40 +58,19 @@ final class GDO_Address extends GDO
 			GDT_CreatedBy::make('address_creator'),
 		];
 	}
-	
+
 	##############
 	### Getter ###
 	##############
-	public function getCountry() : ?GDO_Country { return $this->gdoValue('address_country'); }
-	public function getCountryID() { return $this->gdoVar('address_country'); }
-	public function getZIP() { return $this->gdoVar('address_zip'); }
-	public function getCity() { return $this->gdoVar('address_city'); }
-	public function getStreet() { return $this->gdoVar('address_street'); }
-	public function getRealName() { return $this->gdoVar('address_name'); }
-	
-	public function getPhone() { return $this->gdoVar('address_phone'); }
-	public function getFax() { return $this->gdoVar('address_phone_fax'); }
-	public function getMobile() { return $this->gdoVar('address_phone_mobile'); }
-	public function getEmail() { return $this->gdoVar('address_email'); }
-	
-	public function getVAT() { return $this->gdoVar('address_vat'); }
-	public function getCompany() { return $this->gdoVar('address_company'); }
-	
-	public function getCreator() : GDO_User { return $this->gdoValue('address_creator'); }
-	public function getCreatorId() : string { return $this->gdoVar('address_creator'); }
-	
-	public function getAddressLine() : string
-	{
-		$line = $this->getStreet() . ', ' . $this->getZIP() . ' ' .  $this->getCity();
-		return trim($line, ' ,');
-	}
 
-	public function getNameOrCompany() : string
+	public function renderName(): string { return $this->getNameOrCompany(); }
+
+	public function getNameOrCompany(): string
 	{
 		$back = '';
 		if ($name = $this->getRealName())
 		{
-			$back .= $name.', ';
+			$back .= $name . ', ';
 		}
 		if ($cmpy = $this->getCompany())
 		{
@@ -98,28 +78,68 @@ final class GDO_Address extends GDO
 		}
 		return $back;
 	}
-	
+
+	public function getRealName() { return $this->gdoVar('address_name'); }
+
+	public function getCompany() { return $this->gdoVar('address_company'); }
+
+	public function renderHTML(): string { return GDT_Address::make()->value($this)->renderHTML(); }
+
+	public function renderList(): string { return GDT_Template::php('Address', 'listitem/address.php', ['address' => $this]); }
+
+	public function renderCard(): string { return GDT_Template::php('Address', 'address_card.php', ['address' => $this]); }
+
+	public function renderOption(): string { return t('address_choice', [$this->getNameOrCompany(), $this->gdoDisplay('address_street')]); }
+
+	public function getCountry(): ?GDO_Country { return $this->gdoValue('address_country'); }
+
+	public function getPhone() { return $this->gdoVar('address_phone'); }
+
+	public function getFax() { return $this->gdoVar('address_phone_fax'); }
+
+	public function getMobile() { return $this->gdoVar('address_phone_mobile'); }
+
+	public function getEmail() { return $this->gdoVar('address_email'); }
+
+	public function getVAT() { return $this->gdoVar('address_vat'); }
+
+	public function getCreator(): GDO_User { return $this->gdoValue('address_creator'); }
+
+	public function getCreatorId(): string { return $this->gdoVar('address_creator'); }
+
 	##############
 	### Helper ###
 	##############
-	public function emptyAddress()
+
+	public function getAddressLine(): string
 	{
-		return (!($this->getCountryID() || $this->getZIP() || $this->getStreet() || $this->getCity()));
+		$line = $this->getStreet() . ', ' . $this->getZIP() . ' ' . $this->getCity();
+		return trim($line, ' ,');
 	}
-	
+
 	############
 	### HREF ###
 	############
-	public function href_edit() { return href('Address', 'Crud', '&id='.$this->getID()); }
-	public function href_btn_set_primary_address() { return href('Address', 'SetPrimary', "&id={$this->getID()}"); }
+
+	public function getStreet() { return $this->gdoVar('address_street'); }
+
+	public function getZIP() { return $this->gdoVar('address_zip'); }
 
 	##############
 	### Render ###
 	##############
-	public function renderName() : string { return $this->getNameOrCompany(); }
-	public function renderHTML() : string { return GDT_Address::make()->value($this)->renderHTML(); }
-	public function renderList() : string { return GDT_Template::php('Address', 'listitem/address.php', ['address' => $this]); }
-	public function renderCard() : string { return GDT_Template::php('Address', 'address_card.php', ['address' => $this]); }
-	public function renderOption() : string { return t('address_choice', [$this->getNameOrCompany(), $this->gdoDisplay('address_street')]); }
+
+	public function getCity() { return $this->gdoVar('address_city'); }
+
+	public function emptyAddress()
+	{
+		return (!($this->getCountryID() || $this->getZIP() || $this->getStreet() || $this->getCity()));
+	}
+
+	public function getCountryID() { return $this->gdoVar('address_country'); }
+
+	public function href_edit() { return href('Address', 'Crud', '&id=' . $this->getID()); }
+
+	public function href_btn_set_primary_address() { return href('Address', 'SetPrimary', "&id={$this->getID()}"); }
 
 }

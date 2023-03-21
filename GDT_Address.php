@@ -1,50 +1,54 @@
 <?php
 namespace GDO\Address;
 
+use GDO\Core\GDO;
+use GDO\Core\GDT;
+use GDO\Core\GDT_ObjectSelect;
 use GDO\Core\GDT_Template;
 use GDO\DB\Query;
-use GDO\Core\GDO;
-use GDO\Core\GDT_ObjectSelect;
-use GDO\User\GDO_User;
 use GDO\Table\GDT_Filter;
-use GDO\Core\GDT;
+use GDO\User\GDO_User;
 
 /**
  * A GDT_Object for GDO_Address.
  * Filter is searching street and country as well.
  * Can restrict to own addresses.
- * 
- * @author gizmore
- * @see GDO_Address
+ *
  * @version 7.0.1
  * @since 6.02
+ * @author gizmore
+ * @see GDO_Address
  */
 final class GDT_Address extends GDT_ObjectSelect
 {
 
-	public function defaultLabel(): static
-	{
-		return $this->label('address');
-	}
-	
-    ###########
-    ### GDT ###
-    ###########
+	public $onlyOwn = false;
+
+	###########
+	### GDT ###
+	###########
+	public $small = false;
+
 	protected function __construct()
 	{
-	    parent::__construct();
-	    $this->icon('address');
+		parent::__construct();
+		$this->icon('address');
 		$this->table(GDO_Address::table());
 // 		$this->orderField = 'address_street';
 	}
-	
+
+	public function defaultLabel(): self
+	{
+		return $this->label('address');
+	}
+
 	public function getChoices(): array
 	{
 		if ($this->onlyOwn)
 		{
-		    # current uid
+			# current uid
 			$uid = GDO_User::current()->getID();
-			
+
 // 			if ($uid > 1)
 			{
 				return $this->table->allWhere("address_creator=$uid");
@@ -58,32 +62,37 @@ final class GDT_Address extends GDT_ObjectSelect
 		}
 		return $this->table->all();
 	}
-	
-	public function getAddress() : ?GDO_Address
+
+	public function onlyOwn($onlyOwn = true)
+	{
+		$this->onlyOwn = $onlyOwn;
+		return $this;
+	}	public function getAddress(): ?GDO_Address
 	{
 		return $this->getValue();
 	}
-	
+
 	################
 	### Only own ###
 	################
-	public $onlyOwn = false;
-	public function onlyOwn($onlyOwn=true)
+
+	public function small($small)
 	{
-	    $this->onlyOwn = $onlyOwn;
-	    return $this;
+		$this->small = $small;
+		return $this;
 	}
-	
+
+
+
 	#############
 	### Small ###
 	#############
-	public $small = false;
-	public function small($small) { $this->small = $small; return $this; }
-	
+
+
 	##############
 	### Render ###
 	##############
-	public function renderHTML() : string
+	public function renderHTML(): string
 	{
 		$address = $this->getAddress();
 		if (!$address)
@@ -96,13 +105,13 @@ final class GDT_Address extends GDT_ObjectSelect
 		];
 		return GDT_Template::php('Address', 'address_html.php', $tVars);
 	}
-	
+
 // 	public function renderList() : string
 // 	{
 // 		return 'XXXXXXXXXXX';
 // 	}
-	
-	public function renderCard() : string
+
+	public function renderCard(): string
 	{
 		return $this->displayCard($this->renderHTML());
 // 		$html = '<label>sdgsdg';
@@ -113,8 +122,8 @@ final class GDT_Address extends GDT_ObjectSelect
 // 		}
 // 		return $this->displayCard(t('---n/a---'));
 	}
-	
-	public function renderPDF() : string
+
+	public function renderPDF(): string
 	{
 		$tVars = [
 			'field' => $this,
@@ -126,7 +135,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	### Filter ###
 	##############
-	public function filterQuery(Query $query, GDT_Filter $f): static
+	public function filterQuery(Query $query, GDT_Filter $f): self
 	{
 		if (null !== ($filter = $this->filterVar($f)))
 		{
@@ -135,17 +144,17 @@ final class GDT_Address extends GDT_ObjectSelect
 		}
 		return $this;
 	}
-	
-	public function filterGDO(GDO $gdo, $filtervalue) : bool
+
+	public function filterGDO(GDO $gdo, $filtervalue): bool
 	{
 		if ($filter = (string)$filtervalue)
 		{
 			$address = $this->getAddress();
-			$fields = array(
+			$fields = [
 				$address->getZIP(),
 				$address->getCity(),
 				$address->getStreet(),
-			);
+			];
 			foreach ($fields as $field)
 			{
 				if (mb_strpos($field, $filter) !== false)
@@ -156,49 +165,49 @@ final class GDT_Address extends GDT_ObjectSelect
 		}
 		return false;
 	}
-	
+
 	################
 	### Validate ###
 	################
-	public function validate($value) : bool
+	public function validate($value): bool
 	{
-	    # not null etc
-	    if (!parent::validate($value))
-	    {
-	        return false;
-	    }
-	    
-	    # null seems fine
-	    if ($value === null)
-	    {
-	        return true;
-	    }
+		# not null etc
+		if (!parent::validate($value))
+		{
+			return false;
+		}
 
-	    # Check if only own rule applies
-	    if ($this->onlyOwn)
-	    {
-	    	$uid = GDO_User::current()->getID();
-	    	if ($uid > 1)
-	    	{
-		        if ($value->getCreator()->getID() != $uid)
-		        {
-		            return $this->error('err_permission_required');
-		        }
-	    	}
-	    }
-	    
-	    # passed
-	    return true;
+		# null seems fine
+		if ($value === null)
+		{
+			return true;
+		}
+
+		# Check if only own rule applies
+		if ($this->onlyOwn)
+		{
+			$uid = GDO_User::current()->getID();
+			if ($uid > 1)
+			{
+				if ($value->getCreator()->getID() != $uid)
+				{
+					return $this->error('err_permission_required');
+				}
+			}
+		}
+
+		# passed
+		return true;
 	}
-	
-	public function plugVars() : array
+
+	public function plugVars(): array
 	{
 		if (isset($this->table))
 		{
 			$query = $this->table->select()->first();
 			if ($this->onlyOwn)
 			{
-				$query->where('address_creator='.GDO_User::current()->getID());
+				$query->where('address_creator=' . GDO_User::current()->getID());
 			}
 			$first = $query->exec()->fetchObject();
 			if ($first)

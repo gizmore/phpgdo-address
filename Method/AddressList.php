@@ -7,13 +7,14 @@ use GDO\Table\MethodQueryList;
 
 final class AddressList extends MethodQueryList
 {
-	public function getPermission() : ?string { return 'staff'; }
-	
-	public function gdoTable() : GDO { return GDO_Address::table(); }
 
-	public function getMethodTitle() : string
+	public function getPermission(): ?string { return 'staff'; }
+
+	public function gdoTable(): GDO { return GDO_Address::table(); }
+
+	public function getMethodTitle(): string
 	{
 		return t('list_address_list');
 	}
-	
+
 }

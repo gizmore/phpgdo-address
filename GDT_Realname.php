@@ -5,12 +5,13 @@ use GDO\Core\GDT_String;
 
 /**
  * A given and lastname.
- * 
- * @author gizmore
+ *
  * @version 7.0.1
+ * @author gizmore
  */
 final class GDT_Realname extends GDT_String
 {
+
 	protected function __construct()
 	{
 		parent::__construct();
@@ -19,5 +20,5 @@ final class GDT_Realname extends GDT_String
 		$this->utf8();
 		$this->caseI();
 	}
-	
+
 }
