@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Address;
 
 use GDO\Core\GDT_String;
@@ -8,11 +9,11 @@ use GDO\Core\GDT_String;
  *
  * @TODO tax validation, depending on country...
  * @author gizmore
+ * @version 7.0.3
  */
 final class GDT_VAT extends GDT_String
 {
-
-	public int $max = 32;
+	public ?int $max = 32;
 	public int $encoding = self::ASCII;
 	public bool $caseSensitive = false;
 

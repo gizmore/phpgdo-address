@@ -1,7 +1,10 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Address;
 
 use GDO\Core\GDO;
+use GDO\Core\GDO_DBException;
+use GDO\Core\GDO_ErrorFatal;
 use GDO\Core\GDT;
 use GDO\Core\GDT_ObjectSelect;
 use GDO\Core\GDT_Template;
@@ -14,7 +17,7 @@ use GDO\User\GDO_User;
  * Filter is searching street and country as well.
  * Can restrict to own addresses.
  *
- * @version 7.0.1
+ * @version 7.0.3
  * @since 6.02
  * @author gizmore
  * @see GDO_Address
@@ -22,19 +25,18 @@ use GDO\User\GDO_User;
 final class GDT_Address extends GDT_ObjectSelect
 {
 
-	public $onlyOwn = false;
+	public bool $onlyOwn = false;
 
 	###########
 	### GDT ###
 	###########
-	public $small = false;
+	public bool $small = false;
 
 	protected function __construct()
 	{
 		parent::__construct();
 		$this->icon('address');
 		$this->table(GDO_Address::table());
-// 		$this->orderField = 'address_street';
 	}
 
 	public function defaultLabel(): self
@@ -42,6 +44,10 @@ final class GDT_Address extends GDT_ObjectSelect
 		return $this->label('address');
 	}
 
+	/**
+	 * @throws GDO_DBException
+	 * @throws GDO_ErrorFatal
+	 */
 	public function getChoices(): array
 	{
 		if ($this->onlyOwn)
@@ -63,11 +69,13 @@ final class GDT_Address extends GDT_ObjectSelect
 		return $this->table->all();
 	}
 
-	public function onlyOwn($onlyOwn = true)
+	public function onlyOwn(bool $onlyOwn = true): static
 	{
 		$this->onlyOwn = $onlyOwn;
 		return $this;
-	}	public function getAddress(): ?GDO_Address
+	}
+
+	public function getAddress(): ?GDO_Address
 	{
 		return $this->getValue();
 	}
@@ -76,17 +84,11 @@ final class GDT_Address extends GDT_ObjectSelect
 	### Only own ###
 	################
 
-	public function small($small)
+	public function small(bool $small=true): static
 	{
 		$this->small = $small;
 		return $this;
 	}
-
-
-
-	#############
-	### Small ###
-	#############
 
 
 	##############
@@ -106,21 +108,9 @@ final class GDT_Address extends GDT_ObjectSelect
 		return GDT_Template::php('Address', 'address_html.php', $tVars);
 	}
 
-// 	public function renderList() : string
-// 	{
-// 		return 'XXXXXXXXXXX';
-// 	}
-
 	public function renderCard(): string
 	{
 		return $this->displayCard($this->renderHTML());
-// 		$html = '<label>sdgsdg';
-// 		return $html;
-// 		if ($this->getAddress())
-// 		{
-// 			return ;
-// 		}
-// 		return $this->displayCard(t('---n/a---'));
 	}
 
 	public function renderPDF(): string
@@ -135,7 +125,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	##############
 	### Filter ###
 	##############
-	public function filterQuery(Query $query, GDT_Filter $f): self
+	public function filterQuery(Query $query, GDT_Filter $f): static
 	{
 		if (null !== ($filter = $this->filterVar($f)))
 		{
