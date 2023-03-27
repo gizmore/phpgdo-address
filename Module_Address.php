@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Address;
 
 use GDO\Core\GDO_Module;
@@ -12,7 +13,7 @@ use GDO\User\GDO_User;
  * UserConfig: primary user address
  * UserSettings: primary user address data
  *
- * @version 7.0.1
+ * @version 7.0.3
  * @since 6.2.0
  * @author gizmore
  */
@@ -54,7 +55,7 @@ final class Module_Address extends GDO_Module
 		);
 	}
 
-	public function getUserSettings()
+	public function getUserSettings(): array
 	{
 		return [
 			GDT_Link::make('link_add_address')->href(href('Address', 'Add'))->noacl(),
@@ -62,7 +63,7 @@ final class Module_Address extends GDO_Module
 		];
 	}
 
-	public function getUserConfig()
+	public function getUserConfig(): array
 	{
 		return [
 			GDT_Address::make('address')->label('address')->onlyOwn()->emptyLabel('sel_create_address_first'),

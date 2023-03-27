@@ -3,6 +3,7 @@ namespace GDO\Address\Method;
 
 use GDO\Address\GDO_Address;
 use GDO\Address\Module_Address;
+use GDO\Core\GDT;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
@@ -35,7 +36,7 @@ final class Add extends MethodForm
 		$form->actions()->addField(GDT_Submit::make());
 	}
 
-	public function formValidated(GDT_Form $form)
+	public function formValidated(GDT_Form $form): GDT
 	{
 		$back = $this->gdoParameterVar('_rb');
 		$address = GDO_Address::blank($form->getFormVars())->insert();

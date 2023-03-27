@@ -4,6 +4,7 @@ namespace GDO\Address\Method;
 use GDO\Address\GDO_Address;
 use GDO\Address\GDT_Address;
 use GDO\Address\Module_Address;
+use GDO\Core\GDT;
 use GDO\Core\Method;
 
 /**
@@ -23,12 +24,13 @@ final class SetPrimary extends Method
 		];
 	}
 
-	public function onMethodInit()
+	public function onMethodInit(): ?GDT
 	{
 		$this->address = $this->gdoParameterValue('id');
+		return null;
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		Module_Address::instance()->saveSetting('address', $this->address->getID());
 		return $this->redirectMessage('msg_address_set_primary', null)->back();

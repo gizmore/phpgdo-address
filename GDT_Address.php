@@ -145,9 +145,9 @@ final class GDT_Address extends GDT_ObjectSelect
 		return $this;
 	}
 
-	public function filterGDO(GDO $gdo, $filtervalue): bool
+	public function filterGDO(GDO $gdo, $filterInput): bool
 	{
-		if ($filter = (string)$filtervalue)
+		if ($filter = (string)$filterInput)
 		{
 			$address = $this->getAddress();
 			$fields = [
@@ -169,7 +169,7 @@ final class GDT_Address extends GDT_ObjectSelect
 	################
 	### Validate ###
 	################
-	public function validate($value): bool
+	public function validate(int|float|string|array|null|object|bool $value): bool
 	{
 		# not null etc
 		if (!parent::validate($value))
