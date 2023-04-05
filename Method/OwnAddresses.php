@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Address\Method;
 
 use GDO\Address\GDO_Address;
@@ -12,7 +13,7 @@ use GDO\User\GDO_User;
 /**
  * Overview of own addresses.
  *
- * @version 7.0.1
+ * @version 7.0.3
  * @since 6.9.0
  * @author gizmore
  */
@@ -23,7 +24,7 @@ final class OwnAddresses extends MethodQueryTable
 
 	public function getMethodTitle(): string
 	{
-		return t('list_address_ownaddresses', [$this->getCountQuery()->exec()->fetchValue()]);
+		return t('list_address_ownaddresses', [$this->getTable()->countItems()]);
 	}
 
 	public function gdoTable(): GDO
