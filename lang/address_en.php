@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Address\lang;
 
 return [
 	'gdo_address' => 'Address',
-	'create_an_address' => 'create an address',
 	'list_address_list' => 'Addresses',
+	'create_an_address' => 'create an address',
 	'address' => 'Address',
 	'phone' => 'Phone',
 	'zip' => 'ZIP',
@@ -41,7 +42,6 @@ return [
 	# Meta
 	'md_address_addresslist' => 'Search through the adress table.',
 	'md_address_ownaddresses' => 'Show all your entered adresses.',
-	'md_address_ownaddresses' => 'Show all your entered addresses.',
 
 	# Own
 	'mt_address_ownaddresses' => 'Address List',

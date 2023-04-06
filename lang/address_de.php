@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Address\lang;
 
 return [
-	'gdo_address' => 'Addresse',
-	'list_address_list' => 'Addressen',
+	'gdo_address' => 'Adresse',
+	'list_address_list' => 'Adressen',
+	'create_an_address' => 'Adresse erstellen',
 	'address' => 'Addresse',
 	'phone' => 'Telefonnummer',
 	'zip' => 'Postleitzahl',
@@ -36,11 +38,9 @@ return [
 	# Primary
 	'mt_address_setprimary' => 'Adresse setzen',
 	'msg_address_set_primary' => 'Ihre Hauptadresse wurde gesetzt.',
-	'address_choice' => '%s - %s',
 
 	# Meta
 	'md_address_addresslist' => 'Durchsuchen Sie Ihre eingetragenen Adressen.',
-	'md_address_addresslist' => 'Search through the address table.',
 	'md_address_ownaddresses' => 'Show all your entered addresses.',
 
 	# Own

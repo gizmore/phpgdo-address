@@ -17,4 +17,9 @@ final class AddressList extends MethodQueryList
 		return t('list_address_list');
 	}
 
+	public function getTableTitleLangKey(): string
+	{
+		return 'list_address_list';
+	}
+
 }
