@@ -33,7 +33,7 @@ final class SetPrimary extends Method
 	public function execute(): GDT
 	{
 		Module_Address::instance()->saveSetting('address', $this->address->getID());
-		return $this->redirectMessage('msg_address_set_primary', null)->back();
+		return $this->redirectMessage('msg_address_set_primary', null);
 	}
 
 }
