@@ -4,7 +4,7 @@ namespace GDO\Address;
 
 use GDO\Core\GDO;
 use GDO\Core\GDO_DBException;
-use GDO\Core\GDO_ErrorFatal;
+use GDO\Core\GDO_ExceptionFatal;
 use GDO\Core\GDT;
 use GDO\Core\GDT_ObjectSelect;
 use GDO\Core\GDT_Template;
@@ -46,9 +46,9 @@ final class GDT_Address extends GDT_ObjectSelect
 
 	/**
 	 * @throws GDO_DBException
-	 * @throws GDO_ErrorFatal
+	 * @throws GDO_ExceptionFatal
 	 */
-	public function getChoices(): array
+	protected function getChoices(): array
 	{
 		if ($this->onlyOwn)
 		{

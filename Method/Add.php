@@ -28,7 +28,7 @@ final class Add extends MethodForm
 		];
 	}
 
-	public function createForm(GDT_Form $form): void
+	protected function createForm(GDT_Form $form): void
 	{
 		$fields = GDO_Address::table()->gdoColumnsExcept('address_id', 'address_creator', 'address_created');
 		$form->addFields(...$fields);
