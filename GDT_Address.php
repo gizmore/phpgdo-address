@@ -39,9 +39,9 @@ final class GDT_Address extends GDT_ObjectSelect
 		$this->table(GDO_Address::table());
 	}
 
-	public function defaultLabel(): self
+	public function gdtDefaultLabel(): ?string
 	{
-		return $this->label('address');
+		return 'address';
 	}
 
 	/**

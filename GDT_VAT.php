@@ -17,7 +17,10 @@ final class GDT_VAT extends GDT_String
 	public int $encoding = self::ASCII;
 	public bool $caseSensitive = false;
 
-	public function defaultLabel(): self { return $this->label('vat'); }
+	public function gdtDefaultLabel(): ?string
+    {
+        return 'vat';
+    }
 
 	public function plugVars(): array
 	{

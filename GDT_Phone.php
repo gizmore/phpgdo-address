@@ -27,7 +27,10 @@ final class GDT_Phone extends GDT_String
 		$this->icon('phone');
 	}
 
-	public function defaultLabel(): self { return $this->label('phone'); }
+	public function gdtDefaultLabel(): ?string
+    {
+        return 'phone';
+    }
 
 	public function plugVars(): array
 	{

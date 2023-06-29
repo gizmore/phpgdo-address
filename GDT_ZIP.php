@@ -18,7 +18,10 @@ final class GDT_ZIP extends GDT_String
 		$this->ascii()->caseS()->max(10);
 	}
 
-	public function defaultLabel(): self { return $this->label('zip'); }
+	public function gdtDefaultLabel(): ?string
+    {
+        return 'zip';
+    }
 
 	public function plugVars(): array
 	{
