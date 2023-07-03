@@ -17,6 +17,8 @@ final class SetPrimary extends Method
 
 	private GDO_Address $address;
 
+    public function isCLI(): bool { return true; }
+
 	public function gdoParameters(): array
 	{
 		return [

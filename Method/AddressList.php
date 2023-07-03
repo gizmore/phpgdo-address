@@ -8,6 +8,8 @@ use GDO\Table\MethodQueryList;
 final class AddressList extends MethodQueryList
 {
 
+    public function isCLI(): bool { return true; }
+
 	public function getPermission(): ?string { return 'staff'; }
 
 	public function gdoTable(): GDO { return GDO_Address::table(); }

@@ -19,8 +19,9 @@ use GDO\User\GDO_User;
  */
 final class OwnAddresses extends MethodQueryTable
 {
+    public function isCLI(): bool { return true; }
 
-	public function isUserRequired(): bool { return true; }
+    public function isUserRequired(): bool { return true; }
 
 	public function getMethodTitle(): string
 	{

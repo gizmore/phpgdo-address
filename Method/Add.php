@@ -21,7 +21,9 @@ use GDO\UI\GDT_Redirect;
 final class Add extends MethodForm
 {
 
-	public function gdoParameters(): array
+    public function isCLI(): bool { return true; }
+
+    public function gdoParameters(): array
 	{
 		return [
 			GDT_Url::make('_rb')->notNull()->allowInternal(),
