@@ -50,5 +50,8 @@ return [
 	# Conf
 	'cfg_div_owner_address' => 'Host-Address',
 
-
+    # Edit
+    'mt_address_edit' => 'Edit address',
+    'msg_address_edit_created' => 'A new address has been created for you and has been set as your primary address.',
+    'msg_address_edit_saved' => 'Your address has been updated.',
 ];

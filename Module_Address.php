@@ -124,23 +124,23 @@ final class Module_Address extends GDO_Module
 	############
 	### Hook ###
 	############
-	public function hookUserSettingSaved(GDO_Module $module, GDO_User $user, array $changes)
-	{
-		if ($module === $this)
-		{
-			$this->updateUserAddress($user);
-		}
-	}
-
-	private function updateUserAddress(GDO_User $user)
-	{
-		$address = GDO_Address::blank([
-			'address_country' => $this->userSettingVar($user, 'address_country'),
-			'address_zip' => $this->userSettingVar($user, 'address_zip'),
-			'address_city' => $this->userSettingVar($user, 'address_city'),
-			'address_street' => $this->userSettingVar($user, 'address_street'),
-		])->insert();
-		$this->saveUserSetting($user, 'address', $address->getID());
-	}
+//	public function hookUserSettingSaved(GDO_Module $module, GDO_User $user, array $changes)
+//	{
+//		if ($module === $this)
+//		{
+//			$this->updateUserAddress($user);
+//		}
+//	}
+//
+//	private function updateUserAddress(GDO_User $user)
+//	{
+//		$address = GDO_Address::blank([
+//			'address_country' => $this->userSettingVar($user, 'address_country'),
+//			'address_zip' => $this->userSettingVar($user, 'address_zip'),
+//			'address_city' => $this->userSettingVar($user, 'address_city'),
+//			'address_street' => $this->userSettingVar($user, 'address_street'),
+//		])->insert();
+//		$this->saveUserSetting($user, 'address', $address->getID());
+//	}
 
 }

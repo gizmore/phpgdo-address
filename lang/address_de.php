@@ -50,4 +50,9 @@ return [
 	# Conf
 	'cfg_div_owner_address' => 'Betreiberadresse',
 
+    # Edit
+    'mt_address_edit' => 'Adresse bearbeiten',
+    'msg_address_edit_created' => 'Eine neue Adresse wurde für Sie erstellt.',
+    'msg_address_edit_saved' => 'Ihre Adresse wurde aktualisiert.',
+
 ];
