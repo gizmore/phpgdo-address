@@ -34,6 +34,7 @@ final class Module_Address extends GDO_Module
 	{
 		return [
 			'Mail',
+            'Maps',
 			'Country',
 		];
 	}
