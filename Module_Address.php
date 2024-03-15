@@ -25,7 +25,8 @@ final class Module_Address extends GDO_Module
 	public function getClasses(): array
 	{
 		return [
-			GDO_Address::class,
+            GDO_Address::class,
+            GDO_City::class,
 		];
 	}
 
