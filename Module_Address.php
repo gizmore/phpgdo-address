@@ -60,15 +60,15 @@ final class Module_Address extends GDO_Module
 	public function getUserSettings(): array
 	{
 		return [
-			GDT_Link::make('link_add_address')->href(href('Address', 'Add'))->noacl(),
-			GDT_Link::make('link_own_addresses')->href(href('Address', 'OwnAddresses'))->noacl(),
+			GDT_Link::make('link_add_address')->href(href('Address', 'Add'))->noacl()->hidden(),
+			GDT_Link::make('link_own_addresses')->href(href('Address', 'OwnAddresses'))->hidden(),
 		];
 	}
 
 	public function getUserConfig(): array
 	{
 		return [
-			GDT_Address::make('address')->label('address')->onlyOwn()->emptyLabel('sel_create_address_first'),
+			GDT_Address::make('address')->label('address')->onlyOwn()->emptyLabel('sel_create_address_first')->hidden(),
 		];
 	}
 
