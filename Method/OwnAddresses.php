@@ -33,7 +33,7 @@ final class OwnAddresses extends MethodQueryTable
 		return GDO_Address::table();
 	}
 
-	public function getQuery(): Query
+	public function gdoQuery(): Query
 	{
 		$uid = GDO_User::current()->getID();
 		return GDO_Address::table()->select()->where("address_creator={$uid}");
