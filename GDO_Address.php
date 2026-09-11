@@ -3,6 +3,8 @@ namespace GDO\Address;
 
 use GDO\Core\GDO;
 use GDO\Core\GDT_AutoInc;
+
+use GDO\Core\GDT_Checkbox;
 use GDO\Core\GDT_CreatedAt;
 use GDO\Core\GDT_CreatedBy;
 use GDO\Core\GDT_String;
@@ -53,6 +55,9 @@ final class GDO_Address extends GDO
 			GDT_Phone::make('address_phone_fax')->label('fax'),
 			GDT_Phone::make('address_phone_mobile')->label('mobilephone'),
 			GDT_Email::make('address_email')->label('email'),
+			# Address role
+			GDT_Checkbox::make('default_billing')->notNull()->initial('0'),
+			GDT_Checkbox::make('default_shipping')->notNull()->initial('0'),
 			# Special
 			GDT_CreatedAt::make('address_created'),
 			GDT_CreatedBy::make('address_creator'),
@@ -100,6 +105,21 @@ final class GDO_Address extends GDO
 	public function getMobile() { return $this->gdoVar('address_phone_mobile'); }
 
 	public function getEmail() { return $this->gdoVar('address_email'); }
+
+	public function isDefaultBilling(): bool { return $this->gdoVar('default_billing') === '1'; }
+
+	public function isDefaultShipping(): bool { return $this->gdoVar('default_shipping') === '1'; }
+
+	/** Mark this owner's address as the single default billing address. */
+	public function setDefaultBilling(): self
+	{
+		if ($creator = $this->getCreatorId())
+		{
+			self::table()->update()->set('default_billing=0')->where("address_creator=$creator")->exec();
+			$this->saveVar('default_billing', '1');
+		}
+		return $this;
+	}
 
 	public function getVAT() { return $this->gdoVar('address_vat'); }
 
