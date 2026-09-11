@@ -41,7 +41,7 @@ return [
 
 	# Meta
 	'md_address_addresslist' => 'Durchsuchen Sie Ihre eingetragenen Adressen.',
-	'md_address_ownaddresses' => 'Show all your entered addresses.',
+	'md_address_ownaddresses' => 'Alle von Ihnen eingetragenen Adressen anzeigen.',
 
 	# Own
 	'mt_address_ownaddresses' => 'Ihre Adressen',
