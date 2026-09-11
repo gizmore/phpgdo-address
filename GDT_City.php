@@ -9,6 +9,7 @@ final class GDT_City extends GDT_ObjectSelect
     protected function __construct()
     {
         parent::__construct();
+        $this->icon('city');
         $this->table(GDO_City::table());
     }
 

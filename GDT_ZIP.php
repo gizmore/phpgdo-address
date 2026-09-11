@@ -15,6 +15,7 @@ final class GDT_ZIP extends GDT_String
 	protected function __construct()
 	{
 		parent::__construct();
+        $this->icon('city');
 		$this->ascii()->caseS()->max(10);
 	}
 

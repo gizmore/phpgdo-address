@@ -45,9 +45,9 @@ final class GDO_Address extends GDO
 			# Required
 			GDT_Divider::make('div_person_address')->label('div_person_address'),
 			GDT_Realname::make('address_name')->label('address_name'),
-			GDT_String::make('address_street')->max(128)->label('street'),
+			GDT_String::make('address_street')->max(128)->label('street')->icon('street'),
 			GDT_ZIP::make('address_zip'),
-            GDT_String::make('address_city')->max(128)->label('city'),
+            GDT_String::make('address_city')->max(128)->label('city')->icon('city'),
 			GDT_Country::make('address_country')->focusable(false),
 			# Optional
 			GDT_Divider::make('div_contact_address')->label('div_contact_address'),

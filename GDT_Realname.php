@@ -19,6 +19,7 @@ final class GDT_Realname extends GDT_String
 		$this->max(64);
 		$this->utf8();
 		$this->caseI();
+        $this->icon('account');
 	}
 
 }
