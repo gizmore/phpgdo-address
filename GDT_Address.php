@@ -34,7 +34,7 @@ final class GDT_Address extends GDT_ObjectSelect
 
 	protected function __construct()
 	{
-		parent::__construct();
+		parent::__construct(); #PP#delete#
 		$this->icon('address');
 		$this->table(GDO_Address::table());
 	}

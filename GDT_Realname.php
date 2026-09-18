@@ -14,7 +14,7 @@ final class GDT_Realname extends GDT_String
 
 	protected function __construct()
 	{
-		parent::__construct();
+		parent::__construct(); #PP#delete#
 		$this->min(1);
 		$this->max(64);
 		$this->utf8();

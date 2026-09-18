@@ -18,7 +18,7 @@ final class GDT_Phone extends GDT_String
 
 	protected function __construct()
 	{
-		parent::__construct();
+		parent::__construct(); #PP#delete#
 		$this->min = 6;
 		$this->max = 32;
 		$this->pattern = '/^\+?[-\/0-9 ]+$/D';
