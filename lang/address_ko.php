@@ -38,6 +38,8 @@ return [
 	'mt_address_ownaddresses' => '주소 목록',
 	'list_address_ownaddresses' => '%s개의 주소가 있습니다.',
 	'cfg_div_owner_address' => '호스트 주소',
+	'default_billing' => '청구지 주소로 사용하시겠습니까?',
+	'default_shipping' => '배송지 주소로 사용하시겠습니까?',
 	'mt_address_edit' => '주소 수정',
 	'msg_address_edit_created' => '새 주소가 생성되어 기본 주소로 설정되었습니다.',
 	'msg_address_edit_saved' => '귀하의 주소가 업데이트되었습니다.',

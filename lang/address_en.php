@@ -49,6 +49,8 @@ return [
 
 	# Conf
 	'cfg_div_owner_address' => 'Host-Address',
+	'default_billing' => 'Use as billing address?',
+	'default_shipping' => 'Use as shipping address?',
 
     # Edit
     'mt_address_edit' => 'Edit address',
