@@ -49,6 +49,8 @@ return [
 
 	# Conf
 	'cfg_div_owner_address' => 'Betreiberadresse',
+	'default_billing' => 'Als Rechnungsadresse verwenden?',
+	'default_shipping' => 'Als Lieferadresse verwenden?',
 
     # Edit
     'mt_address_edit' => 'Adresse bearbeiten',
