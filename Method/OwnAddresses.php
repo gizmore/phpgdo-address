@@ -23,7 +23,7 @@ final class OwnAddresses extends MethodQueryTable
 
     public function isUserRequired(): bool { return true; }
 
-	public function getMethodTitle(): string
+	public function getTableTitle(): string
 	{
 		return t('list_address_ownaddresses', [$this->getTable()->countItems()]);
 	}
